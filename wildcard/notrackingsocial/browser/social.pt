@@ -4,7 +4,7 @@
                 portal_url context/@@plone_portal_state/portal_url;">
     <li class="twitter-share-button" tal:condition="python: view.button_enabled('twitter')">
       <a href="http://twitter.com/share" 
-         tal:attributes='href string:http://twitter.com/share?url=${view/url}&text="FBI - ${title}"'
+         tal:attributes='href string:http://twitter.com/share?url=${view/url}&text="${title}"'
          target="_blank">
          Twitter <span class="count"></span>
       </a>
