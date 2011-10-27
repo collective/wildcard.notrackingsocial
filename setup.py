@@ -25,8 +25,7 @@ setup(name='wildcard.notrackingsocial',
       zip_safe=False,
       install_requires=[
           'setuptools',
-          'plone.app.registry',
-          'plone.app.z3cform'
+          'plone.app.registry'
       ],
       entry_points="""
       # -*- Entry points: -*-
