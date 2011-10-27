@@ -1,0 +1,41 @@
+<tal:block tal:condition="view/enabled">
+  <ul class="share-buttons" 
+    tal:define="title context/@@plone_context_state/object_title;
+                portal_url context/@@plone_portal_state/portal_url;">
+    <li class="twitter-share-button" tal:condition="python: view.button_enabled('twitter')">
+      <a href="http://twitter.com/share" 
+         tal:attributes='href string:http://twitter.com/share?url=${view/url}&text="FBI - ${title}"'
+         target="_blank">
+         Twitter <span class="count"></span>
+      </a>
+    </li>
+    <li class="facebook-share-button" tal:condition="python: view.button_enabled('facebook')">
+      <a href="http://www.facebook.com/sharer.php"
+         tal:attributes="href string:http://www.facebook.com/sharer.php?u=${view/url}&t=${title}"
+         target="_blank">
+        Facebook <span class="count"></span>
+      </a>
+    </li>
+    <li class="plus-share-button" tal:condition="python: view.button_enabled('plus')">
+      <a tal:attributes="href view/plus_url; onclick view/plus_on_click">
+        Google
+      </a>
+    </li>
+    <li class="share-button" tal:condition="python: view.button_enabled('share')">
+      <a href="http://www.addthis.com/bookmark.php" target="_blank">
+        Share
+      </a>
+    </li>
+    <li class="print-button" tal:condition="python: view.button_enabled('print')">
+      <a href="javascript: window.print(); void(1);" target="_blank" onclick="window.print(); return false">
+        <img src="social-print.png" tal:attributes="src string:${portal_url}/++resource++notracksocial/social-print.png" />
+      </a>
+    </li>
+    <li class="mail-button" tal:condition="python: view.button_enabled('mail')">
+      <a href="mailto:?Subject=" tal:attributes='href string:mailto:?Subject="${title}"&body=${view/url}' target="_blank">
+        <img src="social-mail.png" tal:attributes="src string:${portal_url}/++resource++notracksocial/social-mail.png" />
+      </a>
+    </li>
+  </ul>
+  <div id="social-spacer" class="spacer">&nbsp;</div>
+</tal:block>

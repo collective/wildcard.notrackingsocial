@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<layers>
+  <layer name="wildcard.notrackingsocial" 
+      interface="wildcard.notrackingsocial.interfaces.ILayer" />
+</layers>

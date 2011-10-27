@@ -1,0 +1,60 @@
+<configure xmlns="http://namespaces.zope.org/zope"
+  xmlns:browser="http://namespaces.zope.org/browser"
+  xmlns:zcml="http://namespaces.zope.org/zcml">
+    
+  <browser:viewlet
+    name="wildcard.notrackingsocial.socialtop"
+    manager="plone.app.layout.viewlets.interfaces.IAboveContent"
+    class=".viewlets.SocialTopViewlet"
+    template="social.pt"
+    layer="wildcard.notrackingsocial.interfaces.ILayer"
+    permission="zope2.View" />
+    
+  <browser:viewlet
+    name="wildcard.notrackingsocial.socialbottom"
+    manager="plone.app.layout.viewlets.interfaces.IBelowContent"
+    class=".viewlets.SocialBottomViewlet"
+    template="social.pt"
+    layer="wildcard.notrackingsocial.interfaces.ILayer"
+    permission="zope2.View" />
+     
+  <browser:viewlet
+    name="wildcard.notrackingsocial.socialhead"
+    manager="plone.app.layout.viewlets.interfaces.IHtmlHeadLinks"
+    class=".viewlets.SocialHead"
+    layer="wildcard.notrackingsocial.interfaces.ILayer"
+    permission="zope2.View"
+    template="socialhead.pt" />
+   
+  
+  <browser:page
+    name="notracksocial-controlpanel"
+    for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+    permission="cmf.ManagePortal"
+    class=".views.SocialControlPanelView"
+    layer="wildcard.notrackingsocial.interfaces.ILayer"
+    />
+
+  <browser:page
+    name="notracksocial-toggle"
+    for="*"
+    permission="cmf.ModifyPortalContent"
+    class=".views.SocialUtils"
+    attribute="toggle"
+    layer="wildcard.notrackingsocial.interfaces.ILayer"
+    />
+
+  <browser:page
+    name="notracksocial-socialable"
+    for="*"
+    attribute="socialable"
+    permission="zope2.View"
+    class=".views.SocialUtils"
+    layer="wildcard.notrackingsocial.interfaces.ILayer"
+    />
+  
+  <browser:resourceDirectory
+    name="notracksocial"
+    directory="resources"
+    />
+</configure>

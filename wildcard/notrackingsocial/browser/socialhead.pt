@@ -1,0 +1,116 @@
+<tal:block tal:condition="view/enabled">
+<style>
+/* social stuff */
+ul.share-buttons{
+  padding:0;
+  margin:0;
+}
+
+ul.share-buttons, ul.share-buttons li{
+  list-style:none;
+  list-style-type:none;
+  list-style-image:none;
+}
+
+ul.share-buttons{
+  border-top: 1px solid #DDDDDD;
+  padding-top: 5px;
+}
+
+#viewlet-above-content ul.share-buttons{
+    border:none;
+    padding-top:0;
+}
+
+ul.share-buttons li{
+  float:left;
+  padding-left:5px;
+}
+
+ul.share-buttons li a{
+  float: left;
+  padding: 0 0 0 16px;
+}
+
+li.twitter-share-button a{ background: url("++resource++notracksocial/twitter.png") no-repeat scroll 0 2px transparent; }
+li.facebook-share-button a{ background: url("++resource++notracksocial/facebook.png") no-repeat scroll 0 2px transparent; }
+li.share-button a{ background: url("++resource++notracksocial/share.png") no-repeat scroll 0 2px transparent; }
+li.plus-share-button a{ background: url("++resource++notracksocial/plus.png") no-repeat scroll 0 0 transparent; }
+
+li.twitter-share-button, li.plus-share-button{
+  padding-left:0;
+  min-width: 80px;
+}
+
+li.facebook-share-button{
+  min-width: 95px;
+}
+
+li.twitter-share-button span.count, li.facebook-share-button span.count{
+  display:none;
+}
+
+ul li.print-button, ul li.mail-button{
+  float:right;
+  width:18px;
+  padding-left:0;
+}
+
+ul li.print-button a, ul li.mail-button a{
+  float:none;
+  padding:0;
+}
+
+div.spacer{
+  clear:both;
+  font-size: 1px;
+  line-height: 1px;
+}
+</style>
+
+  <script type="text/javascript">
+  function addCommas(nStr)
+  {
+    nStr += '';
+    x = nStr.split('.');
+    x1 = x[0];
+    x2 = x.length > 1 ? '.' + x[1] : '';
+    var rgx = /(\d+)(\d{3})/;
+    while (rgx.test(x1)) {
+        x1 = x1.replace(rgx, '$1' + ',' + '$2');
+    }
+    return x1 + x2;
+  }  
+  jq(function(){
+    jq('li.twitter-share-button a, li.facebook-share-button a').click(function(){
+      try {
+        var newwindow = window.open(jq(this).attr('href'), 'sharer', 'toolbar=0,status=0,width=626,height=436');
+        if (!newwindow) {
+          //popups blocked, just open in new window...
+          return true;
+        }
+        if (window.focus) {
+          newwindow.focus();
+        }
+        return false;
+      } catch (e) { return true; }
+    });
+  });
+  </script>
+
+  <tal:facebook tal:condition="python: view.button_enabled('facebook')">
+    <script type="text/javascript" tal:content="structure view/facebook_javascript" />
+    <script type="text/javascript">
+    (function() {
+    var e = document.createElement('script'); e.async = true;
+    e.src = document.location.protocol + '//connect.facebook.net/en_US/all.js';
+      jq('head').append(e);
+    }());
+    </script>
+  </tal:facebook>
+
+  <script type="text/javascript"
+    tal:condition="python: view.button_enabled('twitter')"
+    tal:content="structure view/twitter_javascript" />
+
+</tal:block>

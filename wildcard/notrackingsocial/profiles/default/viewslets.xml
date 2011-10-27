@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<object>
+ <order manager="plone.abovecontent" skinname="*">
+   <viewlet name="wildcard.notrackingsocial.socialtop" before="*" />
+ </order>
+ <order manager="plone.belowcontent" skinname="*">
+   <viewlet name="wildcard.notrackingsocial.socialbottom" after="*" />
+ </order> 
+</object>

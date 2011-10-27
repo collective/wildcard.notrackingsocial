@@ -1,0 +1,3 @@
+<registry>
+    <records interface="wildcard.notrackingsocial.interfaces.ISocialSettings" />
+</registry>
